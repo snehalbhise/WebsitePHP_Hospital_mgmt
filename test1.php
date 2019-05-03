@@ -1,0 +1,160 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+      
+ <HEAD>
+  <TITLE>Test Information </TITLE>
+  </head>
+  
+    <style>
+        span
+        {
+            color:red;
+
+        }
+        </style>
+
+        <?php
+        $iErr=$nErr=$tErr=$aErr=$gErr="";
+
+        if($_SERVER["REQUEST_METHOD"]=='POST')
+            {
+
+        $PatientID=$_POST['PatientID'];
+        $PatientName=$_POST['PatientName'];
+        $TestName=$_POST['TestName'];
+        $Amount=$_POST['Amount'];
+        $gender=$_POST['gender'];
+
+        if(empty($PatientName))
+            {
+            $nErr=" Patient Name is Required";
+            }
+        else if(!preg_match("/^[a-z A-Z]*$/",$PatientName))
+        {
+            $nErr="Not valid  patient name";
+
+        }
+
+        if(empty($PatientID))
+            {
+            $iErr="Patient ID is Required";
+            }
+        else if(!filter_var($PatientID,FILTER_VALIDATE_INT))
+
+        {
+            $iErr="Patient ID must be number";
+
+        }
+        
+        if(empty($Amount))
+            {
+            $aErr="Amount is Required";
+            }
+        else if(!filter_var($Amount,FILTER_VALIDATE_INT))
+
+        {
+            $aErr="Amount must be number";
+
+        }
+
+
+
+        
+         if(empty($TestName))
+            {
+            $tErr="TestName is Required";
+            }
+         else if(!preg_match("/^[a-z A-Z]*$/",$TestName))
+        {
+            $tErr="Not valid  Test name";
+
+        }
+
+         if(empty($gender))
+            {
+            $gErr="gender is Required";
+            }
+            /*
+            if($iErr==""&&$nErr==""&&$tErr==""&&$aErr==""&&$gErr=="")
+            {
+                
+                header("Location:home.html");
+                
+            }*/
+            }
+        ?>
+
+  
+  
+  
+ <a href="home.html"><input name="HOME" value="HOME" type="submit"></a>
+<body style="background-image: url(ht.JPG);">
+    <form method="post" action="testinsert.php" name="HOME">
+<table align='center' bgcolor="#00FFFF" height="400px" width="450px">
+<center>
+<form method="POST" action="testinsert.php">
+<tr bgcolor=black><td align=center><font SIZE=6 width="300px" color=white><i><u>HOSPITAL MANAGEMENT SYSTEM</font></td></tr>
+
+<tr bgcolor=#FF0066><td align=center><font size=5 color=white>TEST INFORMATION</font></td></tr>
+
+<form method="POST" action="testinsert.php">
+<tr><td><table width=500 >
+      <p><span class="Err">*Required field</span></p>
+
+<tr>
+<td>Patient ID</td>
+<td><input type="text" name="PatientID"></td><td><span>*<?php echo $iErr ;?></span></td>
+</tr>
+
+
+<tr>
+<td>Patient Name</td>
+<td><input type="text" name="PatientName"></td><td><span>*<?php echo $nErr ;?></span></td>
+</tr>
+
+<tr>
+<td>Gender</td>
+<td><input type="radio" name="gender" value="male">Male<input type="radio" name="gender" value="female">Female</td><td><span>*<?php echo $gErr ;?></span></td>
+</tr>
+
+<tr>
+<td>Test Name</td>
+<td><input type="text" name="TestName"></td><td><span>*<?php echo $tErr ;?></span></td>
+</tr>
+
+
+<tr>
+<td>Amount</td>
+<td><input type="text" name="Amount"></td><td><span>*<?php echo $aErr ;?></span></td>
+</tr>
+
+
+
+<tr>
+<td>Date of Test</td>
+<td><input type="date" name="date">
+</tr>
+
+
+
+<tr></tr>
+<tr></tr>
+<tr></tr>
+<tr></tr>
+<tr>
+    <td><a href="testinsert.php"><input type="submit" value="Submit" name="submit"></a></td>
+    <td><a href="testupdate.php"><input type="button" value="Update"  name="update" ></a></td>
+    <td><a href="deletet1.php"><input type="button" value="Delete"  name="Delete" ></a></td>
+    <td><a href="testdisplay.php">Display</a>
+</tr>
+
+</table>
+</table>
+
+
+
+ </BODY>
+</HTML>
+
+    
+  
